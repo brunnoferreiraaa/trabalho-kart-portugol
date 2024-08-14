@@ -1,4 +1,8 @@
 programa {
+  /**
+   * Cabeçalho
+   */
+
   inteiro
     KARTS = 3
 
@@ -7,8 +11,8 @@ programa {
 
   inteiro
     kartCadastrado[KARTS],
-    kartAlocadoContador[KARTS],
-    kartAlocado[KARTS]
+    kartAlocado[KARTS],
+    kartVezesAlocado[KARTS]
 
   real
     kartValor[KARTS],
@@ -17,15 +21,17 @@ programa {
   inteiro
     kartContador = 0
 
-  funcao inteiro cadastrarKart(cadeia modelo, real valor) {
-    se (kartContador == KARTS) {
-      retorne -1
-    }
+  /**
+   * Funções
+   */
 
-    kartModelo[kartContador] = modelo
-    kartValor[kartContador] = valor
-
-    kartCadastrado[kartContador] = 1
+  funcao inteiro novoKart(cadeia modelo, real valor) {
+    kartModelo[kartContador]       = modelo
+    kartValor[kartContador]        = valor
+    kartLucro[kartContador]        = 0.0
+    kartAlocado[kartContador]      = 0
+    kartVezesAlocado[kartContador] = 0
+    kartCadastrado[kartContador]   = 1
     kartContador++
 
     retorne kartContador
@@ -34,34 +40,64 @@ programa {
   funcao vazio mostrarCadastroDeKart() {
     limpa()
 
-    caracter
-      retornar
-    cadeia
-      modelo
-    real
-      valor
+    se (kartContador != KARTS) {
+      cadeia
+        modelo
+      real
+        valor
 
-    escreva("# CADASTRO DE KART\n\n")
+      escreva("# CADASTRO DE KART\n\n")
 
-    escreva("Modelo:\nR: ")
-    leia(modelo)
+      escreva("Modelo:\nR: ")
+      leia(modelo)
 
-    escreva("\nValor do aluguel (R$):\nR: ")
-    leia(valor)
-    
-    inteiro
-      kartId = cadastrarKart(modelo, valor)
+      escreva("\nValor do aluguel (R$):\nR: ")
+      leia(valor)
+      
+      inteiro
+        kartId = novoKart(modelo, valor)
 
-    // Caso `kartId` for `-1` o limite foi atingido.
-    se (kartId == -1) {
-      escreva("\nO limite de cadastrar karts foi atingido.")
-    } senao {
       escreva("\nKart Nº ", kartId, " cadastrado!")
+    } senao {
+      escreva("O limite de cadastrar karts foi atingido.")
     }
 
+    caracter
+      pausar
+
     escreva("\n\nPressione qualquer caracter para retornar ao menu principal.\nR: ")
-    leia(retornar)
+    leia(pausar)
   }
+
+  funcao vazio mostrarKartsDisponiveis() {
+    limpa()
+
+    inteiro
+      disponivelContador = 0
+
+    escreva("# KARTS DISPONÍVEIS:\n\n")
+
+    para (inteiro i = 0; i < kartContador; i++) {
+      se (kartCadastrado[i] == 1 e kartAlocado[i] == 0) {
+        escreva("Nº ", i, " | MODELO: ", kartModelo[i], " | VALOR: R$ ", kartValor[i], "\n")
+        disponivelContador++
+      }
+    }
+
+    se (disponivelContador == 0) {
+      escreva("Não há nenhum kart disponível.\n")
+    }
+
+    caracter
+      pausar
+
+    escreva("\nPressione qualquer caracter para retornar ao menu principal.\nR: ")
+    leia(pausar)
+  }
+
+  /**
+   * Inicio
+   */
 
   funcao inicio() {
     inteiro opcao
@@ -78,7 +114,7 @@ programa {
       escreva("7. Receita e lucro do dia, considerando karts locados\n")
       escreva("8. Locação de circuito\n")
       escreva("9. Atualizar dia\n")
-      escreva("10. Sair do programa\n\n")
+      escreva("0. Sair do programa\n\n")
 
       escreva("R: ")
       leia(opcao)
@@ -86,9 +122,15 @@ programa {
       escolha (opcao) {
         caso 1: {
           mostrarCadastroDeKart()
+          pare
+        }
+
+        caso 2: {
+          mostrarKartsDisponiveis()
+          pare
         }
       }
     }
-    enquanto (opcao != 10)
+    enquanto (opcao != 0)
   }
 }
