@@ -1,4 +1,7 @@
 programa {
+  inclua biblioteca Util --> u
+  inclua biblioteca Matematica --> m
+
   /**
    * Cabeçalho
    */
@@ -26,15 +29,21 @@ programa {
    */
 
   funcao inteiro novoKart(cadeia modelo, real valor) {
-    kartModelo[kartContador]       = modelo
-    kartValor[kartContador]        = valor
-    kartLucro[kartContador]        = 0.0
-    kartAlocado[kartContador]      = 0
-    kartVezesAlocado[kartContador] = 0
-    kartCadastrado[kartContador]   = 1
-    kartContador++
+    // Função responsável por iniciar as variáveis do kart com os novos valores de cadastro.
+    // A variável `kartContador` será uma variável global (visível para todas funções).
+    // E sempre será incrementada quando a função `novoKart` for chamada (será a variável que definirá o total de karts cadastrados).
 
-    retorne kartContador
+    inteiro
+      kartId = kartContador
+    
+    kartModelo[kartId]       = modelo
+    kartValor[kartId]        = valor
+    kartLucro[kartId]        = 0.0
+    kartAlocado[kartId]      = 0
+    kartVezesAlocado[kartId] = 0
+    kartCadastrado[kartId]   = 1
+
+    retorne kartContador++
   }
 
   funcao vazio mostrarCadastroDeKart() {
@@ -54,6 +63,8 @@ programa {
       escreva("\nValor do aluguel (R$):\nR: ")
       leia(valor)
       
+      // A variável `kartId` receberá o número (ID) do novo kart cadastrado (Seria o mesmo de `kartContador`).
+      // Como a função `novoKart` tem um retorno `retorne kartContador++` então esse é valor que será armazenado na variável `kartId` abaixo.
       inteiro
         kartId = novoKart(modelo, valor)
 
@@ -79,7 +90,7 @@ programa {
 
     para (inteiro i = 0; i < kartContador; i++) {
       se (kartCadastrado[i] == 1 e kartAlocado[i] == 0) {
-        escreva("Nº ", i, " | MODELO: ", kartModelo[i], " | VALOR: R$ ", kartValor[i], "\n")
+        escreva("Nº ", i, " | MODELO: ", kartModelo[i], " | ALUGUEL: R$ ", m.arredondar(kartValor[i], 2), "\n")
         disponivelContador++
       }
     }
@@ -100,7 +111,8 @@ programa {
    */
 
   funcao inicio() {
-    inteiro opcao
+    inteiro
+      opcao
 
     faca {
       limpa()
