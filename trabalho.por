@@ -7,19 +7,19 @@ programa {
      */
 
     inteiro
-        KARTS = 3
+        MAX_KARTS = 3 // Números máximo de karts
 
     cadeia
-        kartModelo[KARTS]
+        kartModelo[MAX_KARTS]
 
     inteiro
-        kartCadastrado[KARTS],
-        kartAlocado[KARTS],
-        kartVezesAlocado[KARTS]
+        kartCadastrado[MAX_KARTS],
+        kartAlocado[MAX_KARTS],
+        kartVezesAlocado[MAX_KARTS]
 
     real
-        kartValor[KARTS],
-        kartLucro[KARTS]
+        kartValor[MAX_KARTS],
+        kartLucro[MAX_KARTS]
     
     inteiro
         kartContador = 0
@@ -49,7 +49,7 @@ programa {
     funcao vazio mostrarCadastroDeKart() {
         limpa()
 
-        se (kartContador != KARTS) {
+        se (kartContador != MAX_KARTS) {
             cadeia
                 modelo
             real
