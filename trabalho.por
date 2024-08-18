@@ -63,8 +63,8 @@ programa {
       escreva("\nValor do aluguel (R$):\nR: ")
       leia(valor)
       
-      // A variável `kartId` receberá o número (ID) do novo kart cadastrado (Seria o mesmo de `kartContador`).
       // Como a função `novoKart` tem um retorno `retorne kartContador++` então esse é valor que será armazenado na variável `kartId` abaixo.
+      // A variável `kartId` receberá o número (ID) do novo kart cadastrado (Seria o mesmo de `kartContador`).
       inteiro
         kartId = novoKart(modelo, valor)
 
