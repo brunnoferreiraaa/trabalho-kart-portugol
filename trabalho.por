@@ -31,7 +31,7 @@ programa {
   funcao inteiro novoKart(cadeia modelo, real valor) {
     // Função responsável por iniciar as variáveis do kart com os novos valores de cadastro.
     // A variável `kartContador` será uma variável global (visível para todas funções).
-    // E sempre será incrementada quando a função `novoKart` for chamada (será a variável que definirá o total de karts cadastrados).
+    // E sempre será incrementada `kartContador++` quando a função `novoKart` for chamada (será a variável que definirá o total de karts cadastrados).
 
     inteiro
       kartId = kartContador
