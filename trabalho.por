@@ -36,12 +36,12 @@ programa {
         inteiro
             kartId = kartContador
         
-        kartModelo[kartId]             = modelo
-        kartValor[kartId]                = valor
-        kartLucro[kartId]                = 0.0
-        kartAlocado[kartId]            = 0
+        kartModelo[kartId]       = modelo
+        kartValor[kartId]        = valor
+        kartLucro[kartId]        = 0.0
+        kartAlocado[kartId]      = 0
         kartVezesAlocado[kartId] = 0
-        kartCadastrado[kartId]     = 1
+        kartCadastrado[kartId]   = 1
 
         retorne kartContador++
     }
