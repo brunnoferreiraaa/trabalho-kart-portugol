@@ -22,6 +22,7 @@ programa {
         kartLucro[MAX_KARTS]
     
     inteiro
+        diaAtual = 0,
         kartContador = 0
 
     /**
@@ -106,6 +107,25 @@ programa {
         leia(pausar)
     }
 
+    funcao vazio atualizarDiaAtual() {
+        // O faça enquanto abaixo será para o usuário colocar um dia do mês entre 1 e 30.
+        // O código sempre repetirá se caso o dia inserido NÃO for >= 1 e <= 30.
+        faca {
+            limpa()
+
+            escreva("# ATUALIZAR DIA:\n\n")
+
+            escreva("Coloque o dia abaixo para atualizar\nR: ")
+            leia(diaAtual)
+        } enquanto (nao (diaAtual >= 1 e diaAtual <= 30))
+
+        caracter
+            pausar
+
+        escreva("\nPressione qualquer caracter para retornar ao menu principal.\nR: ")
+        leia(pausar)
+    }
+
     /**
      * Inicio
      */
@@ -141,8 +161,11 @@ programa {
                     mostrarKartsDisponiveis()
                     pare
                 }
+
+                caso 9: {
+                    atualizarDiaAtual()
+                }
             }
-        }
-        enquanto (opcao != 0)
+        } enquanto (opcao != 0)
     }
 }
