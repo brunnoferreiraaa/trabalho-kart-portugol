@@ -107,6 +107,26 @@ programa {
         leia(pausar)
     }
 
+     funcao alugarKart(){
+
+      inteiro numeroKart
+      cadeia nome[3]
+
+      para(inteiro i = 0; i<3; i++){
+      escreva("Digite o seu nome: ")
+      leia(nome[i])
+      }
+
+      limpa()
+
+      escreva("Estes são os Karts disponíveis: \n")
+      mostrarKartsDisponiveis()
+
+      escreva("Informe o número do Kart que deseja alugar: ")
+      leia(numeroKart)
+      
+  }
+
     funcao vazio atualizarDiaAtual() {
         // O faça enquanto abaixo será para o usuário colocar um dia do mês entre 1 e 30.
         // O código sempre repetirá se caso o dia inserido NÃO for >= 1 e <= 30.
